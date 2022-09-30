@@ -19,9 +19,9 @@ done;
 		| LC_ALL=C sort
 ) > /etc/apt/package-hashes-${ARCH}-compare.txt
 
-diff /etc/apt/package-hashes-${ARCH}{,-compare}.txt
+# diff /etc/apt/package-hashes-${ARCH}{,-compare}.txt
 
-echo "made it here"
+echo "made it here 1"
 sleep 10
 
 apt-get install --allow-downgrades -y $(cat /etc/apt/packages-${ARCH}.list)

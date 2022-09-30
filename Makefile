@@ -7,7 +7,7 @@ CACHE_DIR := cache
 CONFIG_DIR := config
 SRC_DIR := src
 USER := $(shell id -g):$(shell id -g)
-CPUS := $(shell nproc)
+# CPUS := $(shell nproc)
 ARCH := x86_64
 TARGET_NAME := bzImage
 , := ,
@@ -174,7 +174,7 @@ $(CACHE_DIR)/busybox-$(BUSYBOX_VERSION):
 
 $(OUT_DIR)/toolchain.tar:
 	DOCKER_BUILDKIT=1 \
-	docker build \
+	docker buildx build \
 		--tag local/$(NAME)-build \
 		--build-arg DEBIAN_HASH=$(DEBIAN_HASH) \
 		--build-arg RUST_REF=$(RUST_REF) \
@@ -232,7 +232,7 @@ $(OUT_DIR)/busybox: \
 	$(call toolchain,$(USER)," \
 		cd /cache/busybox-$(BUSYBOX_VERSION) && \
 		cp /config/debug/busybox.config .config && \
-		make -j$(CPUS) busybox && \
+		make -j2 busybox && \
 		cp busybox /out/; \
 	")
 

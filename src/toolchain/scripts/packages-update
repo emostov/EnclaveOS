@@ -13,7 +13,10 @@ deb [check-valid-until=no] ${snapshot_url}/${snapshot_date} bookworm main
 deb [check-valid-until=no] ${snapshot_url}-security/${snapshot_date} bookworm-security main
 deb [check-valid-until=no] ${snapshot_url}/${snapshot_date} bookworm-updates main
 EOF
+echo "made it here 2"
 cp /etc/apt/sources.list /config/toolchain/
+
+echo "made it here 3"
 
 ARCH=$(uname -m)
 
